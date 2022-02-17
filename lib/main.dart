@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'home.dart';
+import 'settingPage.dart';
+import 'qaPage.dart';
+import 'loginPage.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainPage(),
+      home: Home(),
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
@@ -25,7 +28,7 @@ class MainPage extends StatelessWidget {
         title: Text(
           'Example Application',
           style: TextStyle(
-            color: Colors.blue,
+            color: Colors.white,
           ),
         ),
         backgroundColor: Colors.black,
@@ -52,7 +55,7 @@ class MainPage extends StatelessWidget {
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: Text("Kang"),
-              accountEmail: Text("aaa@kw.ac.kr"),
+              accountEmail: Text("rkdehdgns1230@kw.ac.kr"),
               decoration: BoxDecoration(
                 color: Colors.black26,
                 // drawer header의 아래쪽 부드럽게 하는 부분
@@ -111,38 +114,5 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class SettingPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          'Setting page',
-          style: TextStyle(
-            color: Colors.blue,
-          ),
-        ),
-        backgroundColor: Colors.black,
-      ),
-    );
-  }
-}
 
-class QAPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          'Q&A Page',
-          style: TextStyle(
-            color: Colors.blue,
-          ),
-        ),
-        backgroundColor: Colors.black,
-      ),
-    );
-  }
-}
+
