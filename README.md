@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # app_packaging_example
 
 A new Flutter project.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# AppPackagingExample
+app packaging example with flutter(dart)
+>>>>>>> d514c98e5e626b15483ee1b9e03e20436981a0eb
