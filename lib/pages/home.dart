@@ -1,6 +1,6 @@
-import 'package:app_packaging_example/loginPage.dart';
+import 'loginPage.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import '../main.dart';
 
 class Home extends StatelessWidget {
   @override

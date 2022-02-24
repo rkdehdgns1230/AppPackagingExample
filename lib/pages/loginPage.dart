@@ -1,0 +1,145 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../main.dart';
+
+class LogInPage extends StatefulWidget {
+  @override
+  State<LogInPage> createState() => _LogInPageState();
+}
+
+class _LogInPageState extends State<LogInPage> {
+  // TextFiled에 입력된 데이터를 위한 TextEditingController 객체
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Log In'),
+        backgroundColor: Colors.black,
+        centerTitle: true,
+      ),
+      // 여러 개의 TextField widget의 서식 관리를 위한 widget
+      body: Builder(builder: (ctx) {
+        return GestureDetector(
+          // 화면 빈 공간 탭시 키보드 focus 해제하도록 구현
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: SingleChildScrollView(
+            child: Form(
+              child: Theme(
+                data: ThemeData(
+                  primaryColor: Colors.black26,
+                  inputDecorationTheme: InputDecorationTheme(
+                      labelStyle: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 15.0,
+                  )),
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(40.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'WBC detector',
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 35.0,
+                        ),
+                      ),
+                      Text('Login',
+                          style: TextStyle(
+                            color: Colors.black26,
+                            fontSize: 25.0,
+                          )),
+                      SizedBox(
+                        height: 50.0,
+                      ),
+                      TextField(
+                        // Login page 시작시 id 입력창에 auto focus 부여
+                        autofocus: true,
+                        controller: controller1,
+                        decoration: InputDecoration(
+                          labelText: "Enter ID",
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      TextField(
+                        controller: controller2,
+                        decoration: InputDecoration(
+                          labelText: "Enter Password",
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      SizedBox(
+                        height: 40.0,
+                      ),
+                      ButtonTheme(
+                          minWidth: 100.0,
+                          height: 50.0,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.black,
+                            ),
+                            child: Text('Login'),
+                            // 버튼 클릭시 아이디 & 비밀번호 확인
+                            onPressed: () {
+                              if (controller1.text == 'rkdehdgns1230' &&
+                                  controller2.text == 'fdc114') {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        MainPage(),
+                                  ),
+                                );
+                              } else if (controller1.text == 'rkdehdgns1230') {
+                                showSnackBar3(ctx);
+                              } else if (controller2.text == 'fdc114') {
+                                showSnackBar2(ctx);
+                              } else {
+                                showSnackBar1(ctx);
+                              }
+                            },
+                          ))
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+// id, 비밀번호 잘못된 경우 스낵바
+void showSnackBar1(BuildContext ctx) {
+  ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+    content: Text('Please check your ID and PW'),
+    duration: Duration(seconds: 2),
+    backgroundColor: Colors.blue,
+  ));
+}
+
+// id 잘못된 경우 스낵바
+void showSnackBar2(BuildContext ctx) {
+  ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+    content: Text('Please check your ID'),
+    duration: Duration(seconds: 2),
+    backgroundColor: Colors.blue,
+  ));
+}
+
+// 비밀번호 잘못된 경우 스낵바
+void showSnackBar3(BuildContext ctx) {
+  ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+    content: Text('Please check your PW'),
+    duration: Duration(seconds: 2),
+    backgroundColor: Colors.blue,
+  ));
+}
