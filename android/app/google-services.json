@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494253665069",
+    "project_id": "aijoah-application",
+    "storage_bucket": "aijoah-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494253665069:android:09280af12807aa1a3501a4",
+        "android_client_info": {
+          "package_name": "com.example.app_packaging_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494253665069-9i6fhectfkchg0cn46e01sge56e71bcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBzRE-gH9Ta0NUQMz0tehSbZhp0_XPNaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494253665069-9i6fhectfkchg0cn46e01sge56e71bcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

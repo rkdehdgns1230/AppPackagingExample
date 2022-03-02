@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'chat_screen.dart';
 import '../main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
 
 class LogInPage extends StatefulWidget {
   @override
@@ -11,6 +15,10 @@ class _LogInPageState extends State<LogInPage> {
   // TextFiled에 입력된 데이터를 위한 TextEditingController 객체
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller2 = TextEditingController();
+
+  String userName = '';
+  String userPassword = '';
+  final _authentication = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +74,9 @@ class _LogInPageState extends State<LogInPage> {
                           labelText: "Enter ID",
                         ),
                         keyboardType: TextInputType.emailAddress,
+                        onChanged: (value){
+                          userName = value;
+                        },
                       ),
                       TextField(
                         controller: controller2,
@@ -73,6 +84,10 @@ class _LogInPageState extends State<LogInPage> {
                           labelText: "Enter Password",
                         ),
                         keyboardType: TextInputType.emailAddress,
+                        onChanged: (value){
+                          userPassword = value;
+                        },
+                        obscureText: true,
                       ),
                       SizedBox(
                         height: 40.0,
@@ -86,7 +101,32 @@ class _LogInPageState extends State<LogInPage> {
                             ),
                             child: Text('Login'),
                             // 버튼 클릭시 아이디 & 비밀번호 확인
-                            onPressed: () {
+                            onPressed: () async{
+                              try {
+                                final newUser = await _authentication.createUserWithEmailAndPassword(
+                                  email: userName, password: userPassword
+                                );
+                                if(newUser.user != null){
+                                  print('성공!'); // + 다음 페이지로 이동까지
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) => ChatScreen(),
+                                    )
+                                  );
+                                }
+                              }
+                              catch(exception){
+                                print(exception);
+                                // 시각적 정보 표현을 위해서 snack bar를 추가
+                                ScaffoldMessenger.of(ctx).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Please check your email and password'),
+                                    backgroundColor: Colors.blue,
+                                  )
+                                );
+                              }
+                              /*
                               if (controller1.text == 'rkdehdgns1230' &&
                                   controller2.text == 'fdc114') {
                                 Navigator.push(
@@ -102,7 +142,8 @@ class _LogInPageState extends State<LogInPage> {
                                 showSnackBar2(ctx);
                               } else {
                                 showSnackBar1(ctx);
-                              }
+                              }*/
+                              
                             },
                           ))
                     ],
